@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       scrollBehavior: MouseScrollBehavior(),
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: const Color(0xFF00D4FF),
+        colorSchemeSeed: Colors.deepPurple,
         brightness: Brightness.dark,
       ),
       initialRoute: AppRoutes.splash,

@@ -80,7 +80,7 @@ class _EventsScreenState extends State<EventsScreen> {
                       filteredEvents = allEvents;
                     });
                   },
-                  icon: const Icon(Icons.delete, color: Color(0xFF8B9EC7)),
+                  icon: const Icon(Icons.delete, color: Colors.grey),
                 ),
               ),
 
@@ -91,7 +91,7 @@ class _EventsScreenState extends State<EventsScreen> {
                   ? const Center(
                       child: Text(
                         'Nenhum evento encontrado',
-                        style: TextStyle(color: Color(0xFF8B9EC7)),
+                        style: TextStyle(color: Colors.grey),
                       ),
                     )
                   : ListView.builder(

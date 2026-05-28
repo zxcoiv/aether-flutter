@@ -17,7 +17,6 @@ class _SatellitesScreenState extends State<SatellitesScreen> {
   late List<Satellite> allSatellites;
   late List<Satellite> filteredSatellites;
   SatelliteStatus? selectedStatus;
-  bool filtered = false;
 
   @override
   void initState() {
@@ -33,96 +32,57 @@ class _SatellitesScreenState extends State<SatellitesScreen> {
 
     return Scaffold(
       appBar: AetherTopBar(
-        title: 'SATÉLITES',
+        title: 'Satélites',
         showBack: true,
         onBackClick: widget.onBackClick,
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+        padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            Text(
+              '$operational de ${allSatellites.length} operacionais',
+              style: const TextStyle(fontSize: 13),
+            ),
+            const SizedBox(height: 8),
+
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
               children: [
-                _SatStat(
-                  label: 'Operacionais',
-                  value: '$operational',
-                  color: const Color(0xFF00FF88),
-                ),
-                const SizedBox(width: 10),
-                _SatStat(
-                  label: 'Total',
-                  value: '${allSatellites.length}',
-                  color: const Color(0xFF00D4FF),
-                ),
+                selectedStatus == null
+                    ? ElevatedButton(
+                        onPressed: () => setState(() {
+                          selectedStatus = null;
+                          filteredSatellites = allSatellites;
+                        }),
+                        child: const Text('Todos'),
+                      )
+                    : OutlinedButton(
+                        onPressed: () => setState(() {
+                          selectedStatus = null;
+                          filteredSatellites = allSatellites;
+                        }),
+                        child: const Text('Todos'),
+                      ),
+                ...SatelliteStatus.values.map((status) => selectedStatus == status
+                    ? ElevatedButton(
+                        onPressed: () => setState(() {
+                          selectedStatus = status;
+                          filteredSatellites = getSatellitesByStatus(status);
+                        }),
+                        child: Text(status.label),
+                      )
+                    : OutlinedButton(
+                        onPressed: () => setState(() {
+                          selectedStatus = status;
+                          filteredSatellites = getSatellitesByStatus(status);
+                        }),
+                        child: Text(status.label),
+                      )),
               ],
             ),
-            const SizedBox(height: 12),
-
-            SizedBox(
-              height: 48,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: SatelliteStatus.values.length,
-                separatorBuilder: (_, __) => const SizedBox(width: 8),
-                itemBuilder: (context, index) {
-                  final status = SatelliteStatus.values[index];
-                  final isSelected = selectedStatus == status;
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        filtered = true;
-                        selectedStatus = status;
-                        filteredSatellites = getSatellitesByStatus(status);
-                      });
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? const Color(0xFF00D4FF).withValues(alpha: 0.15)
-                            : Theme.of(context).colorScheme.surface,
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: isSelected
-                              ? const Color(0xFF00D4FF).withValues(alpha: 0.5)
-                              : const Color(0xFF1E2D45),
-                        ),
-                      ),
-                      child: Text(
-                        status.label,
-                        style: TextStyle(
-                          color: isSelected
-                              ? const Color(0xFF00D4FF)
-                              : const Color(0xFF8B9EC7),
-                          fontSize: 12,
-                          fontWeight: isSelected
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-
-            if (filtered)
-              Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      filtered = false;
-                      selectedStatus = null;
-                      filteredSatellites = allSatellites;
-                    });
-                  },
-                  icon: const Icon(Icons.delete, color: Color(0xFF8B9EC7)),
-                ),
-              ),
 
             const SizedBox(height: 8),
 
@@ -133,49 +93,6 @@ class _SatellitesScreenState extends State<SatellitesScreen> {
                   return SatelliteListCard(satellite: filteredSatellites[index]);
                 },
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SatStat extends StatelessWidget {
-  final String label;
-  final String value;
-  final Color color;
-
-  const _SatStat({
-    required this.label,
-    required this.value,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
-        decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.08),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: color.withValues(alpha: 0.25)),
-        ),
-        child: Row(
-          children: [
-            Text(
-              value,
-              style: TextStyle(
-                color: color,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: const TextStyle(color: Color(0xFF8B9EC7), fontSize: 12),
             ),
           ],
         ),

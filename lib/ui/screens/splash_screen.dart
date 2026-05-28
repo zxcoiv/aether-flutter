@@ -21,21 +21,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0A0E1A),
+      backgroundColor: const Color(0xFF14102A),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(
-              Icons.satellite_alt,
-              color: Color(0xFF00D4FF),
+              Icons.public,
+              color: Color(0xFF8B7EEA),
               size: 80,
             ),
             const SizedBox(height: 24),
             const Text(
               'AETHER',
               style: TextStyle(
-                color: Color(0xFF00D4FF),
+                color: Color(0xFF8B7EEA),
                 fontSize: 36,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 6,
@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Text(
               'Monitoramento Ambiental via Satélite',
               style: TextStyle(
-                color: Color(0xFF8B9EC7),
+                color: Color(0xFFADA3C9),
                 fontSize: 13,
               ),
             ),
