@@ -32,6 +32,16 @@ O app centraliza essas informações em painéis visuais, permitindo que usuári
 
 ---
 
+## Telas (Screenshots)
+<img width="1600" height="787" alt="image" src="https://github.com/user-attachments/assets/fe2ec43a-222b-44cd-a419-56e642be5af4" />
+<img width="1600" height="781" alt="image" src="https://github.com/user-attachments/assets/c72f9e95-5f86-42f0-89d2-9fe059c5f474" />
+<img width="1600" height="780" alt="image" src="https://github.com/user-attachments/assets/71752a72-db88-4915-a359-5476dd3fef34" />
+<img width="1600" height="783" alt="image" src="https://github.com/user-attachments/assets/e53ae087-52d6-4cd6-826d-bae02ecad382" />
+<img width="1600" height="775" alt="image" src="https://github.com/user-attachments/assets/2d7680ef-6424-4990-83e5-c38c1c6c56e9" />
+<img width="1600" height="777" alt="image" src="https://github.com/user-attachments/assets/f4b62178-af4b-4b2e-ba09-9070233251ea" />
+
+---
+
 ## Fluxo de Navegação
 
 ```
